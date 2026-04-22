@@ -1,0 +1,16 @@
+# Dependencies / build artefacts
+vendor/
+node_modules/
+
+# Environment configuration (contains credentials)
+.env
+
+# IDE/editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
