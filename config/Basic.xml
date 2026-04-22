@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PARTIE>
+    <PERSONNAGE nom="Adolf"     image="Basic/adolf.jpg"/>
+    <PERSONNAGE nom="Alain"     image="Basic/alain.jpg"/>
+    <PERSONNAGE nom="Albert"    image="Basic/albert.jpg"/>
+    <PERSONNAGE nom="Bill"      image="Basic/bill.jpg"/>
+    <PERSONNAGE nom="Bruce"     image="Basic/bruce.jpg"/>
+    <PERSONNAGE nom="Charles"   image="Basic/charles.jpg"/>
+    <PERSONNAGE nom="Charlie"   image="Basic/charlie.jpg"/>
+    <PERSONNAGE nom="Clint"     image="Basic/clint.jpg"/>
+    <PERSONNAGE nom="Ernesto"   image="Basic/ernesto.jpg"/>
+    <PERSONNAGE nom="Freddie"   image="Basic/freddie.jpg"/>
+    <PERSONNAGE nom="Friedrich" image="Basic/friedrich.jpg"/>
+    <PERSONNAGE nom="Gandhi"    image="Basic/gandhi.jpg"/>
+    <PERSONNAGE nom="Jacob"     image="Basic/jacob.jpg"/>
+    <PERSONNAGE nom="Jean-Paul" image="Basic/jean-paul.jpg"/>
+    <PERSONNAGE nom="Josephine" image="Basic/josephine.jpg"/>
+    <PERSONNAGE nom="Mao"       image="Basic/mao.jpg"/>
+    <PERSONNAGE nom="Marilyn"   image="Basic/marilyn.jpg"/>
+    <PERSONNAGE nom="Marlene"   image="Basic/marlene.jpg"/>
+    <PERSONNAGE nom="Martin"    image="Basic/martin.jpg"/>
+    <PERSONNAGE nom="Morgan"    image="Basic/morgan.jpg"/>
+    <PERSONNAGE nom="Nelson"    image="Basic/nelson.jpg"/>
+    <PERSONNAGE nom="Salma"     image="Basic/salma.jpg"/>
+    <PERSONNAGE nom="Teresa"    image="Basic/teresa.jpg"/>
+    <PERSONNAGE nom="Zinedine"  image="Basic/zinedine.jpg"/>
+</PARTIE>
