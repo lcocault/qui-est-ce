@@ -130,8 +130,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Record answer on the question log
                 $stmt = $db->prepare(
                     "UPDATE questions SET reponse = :r
-                     WHERE partie_id = :pid AND reponse IS NULL
-                     ORDER BY id DESC LIMIT 1"
+                     WHERE id = (
+                         SELECT id FROM questions
+                         WHERE partie_id = :pid AND reponse IS NULL
+                         ORDER BY id DESC LIMIT 1
+                     )"
                 );
                 $stmt->bindValue(':r',   $rep, PDO::PARAM_BOOL);
                 $stmt->bindValue(':pid', $p['id'], PDO::PARAM_INT);
