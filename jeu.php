@@ -302,7 +302,7 @@ $autoRefresh = ($attenteTour || $attendReponse || $attChoisir) ? 5 : 0;
         <div class="characters-grid">
             <?php foreach ($personnages as $p): ?>
                 <?php $imgPath = 'images/' . h($p['image']); ?>
-                <div class="character-card" onclick="choisir(<?= json_encode($p['nom']) ?>)" title="<?= h($p['nom']) ?>">
+                <div class="character-card" onclick="choisir(<?= h(json_encode($p['nom'])) ?>)" title="<?= h($p['nom']) ?>">
                     <img src="<?= $imgPath ?>" alt="<?= h($p['nom']) ?>"
                          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                     <div class="char-placeholder" style="display:none">🎭</div>
@@ -440,7 +440,7 @@ $autoRefresh = ($attenteTour || $attendReponse || $attChoisir) ? 5 : 0;
                         }
                         ?>
                         <div class="<?= $classes ?>"
-                             onclick="<?= $onclick ?>"
+                             onclick="<?= h($onclick) ?>"
                              title="<?= h($nom) ?>">
                             <img src="<?= h($imgPath) ?>" alt="<?= h($nom) ?>"
                                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
