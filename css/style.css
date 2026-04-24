@@ -136,13 +136,15 @@ main { max-width: 1200px; margin: 0 auto; padding: 1.5rem; }
 
 .character-card img {
     width: 100%;
-    height: 80px;
+    height: auto;
+    aspect-ratio: 3/4;
     object-fit: cover;
+    object-position: top;
     display: block;
 }
 .character-card .char-placeholder {
     width: 100%;
-    height: 80px;
+    aspect-ratio: 3/4;
     background: linear-gradient(135deg, #c9d8ec 0%, #a0b4cc 100%);
     display: flex;
     align-items: center;
