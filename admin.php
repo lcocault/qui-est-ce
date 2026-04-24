@@ -42,6 +42,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $xmlFile = __DIR__ . '/config/' . $nom . '.xml';
             if (file_exists($xmlFile)) {
                 unlink($xmlFile);
+                // Remove the associated images directory
+                $imgDir = __DIR__ . '/images/' . $nom;
+                if (is_dir($imgDir)) {
+                    foreach (glob($imgDir . '/*') as $imgFile) {
+                        unlink($imgFile);
+                    }
+                    rmdir($imgDir);
+                }
                 $success = 'Le jeu « ' . h($nom) . ' » a été supprimé.';
             }
         }
@@ -124,7 +132,7 @@ sort($sets);
                 ?>
                     <tr>
                         <td><strong><?= h($s) ?></strong></td>
-                        <td><?= $count ?> personnage<?= $count !== 1 ? 's' : '' ?></td>
+                        <td><?= is_int($count) ? ($count . ' personnage' . ($count !== 1 ? 's' : '')) : '(erreur)' ?></td>
                         <td class="actions-cell">
                             <a href="admin_set.php?set=<?= rawurlencode($s) ?>"
                                class="btn btn-primary btn-sm">✏️ Gérer</a>

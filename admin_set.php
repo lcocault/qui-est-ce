@@ -25,9 +25,12 @@ $success = '';
  */
 function loadXml(string $file): SimpleXMLElement
 {
+    libxml_use_internal_errors(true);
     $xml = simplexml_load_file($file);
     if ($xml === false) {
-        throw new RuntimeException('Impossible de lire le fichier XML.');
+        $errors = array_map(fn($e) => trim($e->message), libxml_get_errors());
+        libxml_clear_errors();
+        throw new RuntimeException('Impossible de lire le fichier XML : ' . implode('; ', $errors));
     }
     return $xml;
 }
@@ -44,6 +47,15 @@ function saveXml(SimpleXMLElement $xml, string $file): void
     if ($dom->save($file) === false) {
         throw new RuntimeException('Impossible de sauvegarder le fichier XML.');
     }
+}
+
+/**
+ * Build a safe image filename from a character name and extension.
+ */
+function makeImageFilename(string $charName, string $ext): string
+{
+    $safeName = preg_replace('/[^a-zA-Z0-9_\-]/', '_', $charName);
+    return strtolower($safeName) . '.' . $ext;
 }
 
 /**
@@ -73,9 +85,7 @@ function handleImageUpload(array $file, string $setName, string $charName): stri
         mkdir($imgDir, 0755, true);
     }
 
-    // Build a safe filename from the character name
-    $safeName = preg_replace('/[^a-zA-Z0-9_\-]/', '_', $charName);
-    $filename = strtolower($safeName) . '.' . $ext[$mime];
+    $filename = makeImageFilename($charName, $ext[$mime]);
     $dest     = $imgDir . '/' . $filename;
 
     if (!move_uploaded_file($file['tmp_name'], $dest)) {
@@ -103,8 +113,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             // Check for duplicate
+            $nomLower = strtolower($nom);
             foreach ($xml->PERSONNAGE as $p) {
-                if (strtolower((string) $p['nom']) === strtolower($nom)) {
+                if (strtolower((string) $p['nom']) === $nomLower) {
                     throw new RuntimeException('Un personnage portant ce nom existe déjà dans ce jeu.');
                 }
             }
@@ -164,10 +175,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $oldFile  = __DIR__ . '/images/' . $oldImage;
                         if (file_exists($oldFile)) {
                             $ext      = pathinfo($oldFile, PATHINFO_EXTENSION);
-                            $safeName = preg_replace('/[^a-zA-Z0-9_\-]/', '_', $newNom);
-                            $newFile  = __DIR__ . '/images/' . $setName . '/' . strtolower($safeName) . '.' . $ext;
+                            $newFilename = makeImageFilename($newNom, $ext);
+                            $newFile  = __DIR__ . '/images/' . $setName . '/' . $newFilename;
                             rename($oldFile, $newFile);
-                            $p['image'] = $setName . '/' . strtolower($safeName) . '.' . $ext;
+                            $p['image'] = $setName . '/' . $newFilename;
                         }
                     }
 
