@@ -80,6 +80,9 @@ $sets = getAvailableSets();
         <h1>🎭 Qui Est-Ce ?</h1>
         <span class="subtitle">Le jeu de déduction en ligne</span>
     </div>
+    <nav class="header-nav">
+        <a href="admin.php">⚙️ Administration</a>
+    </nav>
 </header>
 
 <main>
